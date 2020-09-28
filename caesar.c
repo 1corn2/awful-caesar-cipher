@@ -28,6 +28,7 @@ void cipherF(char *cipher,int *ciph)
 		strcpy(cipher,"caesar");
 		printf("key value:");
 		scanf("%i",ciph);
+		*ciph=(*ciph % 26);
 	}
 	while (getchar() != '\n');
 	return;
@@ -45,9 +46,9 @@ void cipherer(char *text,int ciph,FILE *f)
 			putc(c,f2);
 			continue;
 		}
-		printf("%i %i %c %i %c\n",ciph,c,c,tolower(c),tolower(c));
+		//printf("%i %i %c %i %c\n",ciph,c,c,tolower(c),tolower(c));
 		fputc((((((tolower(c))-97) + ciph) % 26)+97), f2);
-		printf("%i %i %i %c\n",ciph,(((tolower(c))-97) + ciph),((((tolower(c))-97) + ciph) % 26),(((((tolower(c))-97) + ciph) % 26)+97));
+		//printf("%i %i %i %i\n",ciph,(((tolower(c))-97) + ciph),((((tolower(c))-97) + ciph) % 26),(((((tolower(c))-97) + ciph) % 26)+97));
 	}
 	fclose(f2);
 }
