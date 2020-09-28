@@ -1,53 +1,54 @@
 #include <stdio.h>
 #include <stdlib.h>
+
 #include "vopen.h"
 
 
-//otevirani a testovani souboru na sifru
-FILE *souborf(char *soubor)
+//opening and testing file
+FILE *textF(char *text)
 {
 	char c;
 	printf("\n \n nacitani souboru:\n");
-	scanf("%32s",soubor);
+	scanf("%32s",text);
 	while (getchar() != '\n');
 
 	FILE *f;
-	if((f=vopen(soubor,"r"))==NULL)
-		printf("soubor se nepovedlo otevrit\n");
+	if((f=fopen(text,"r+"))==NULL)
+		printf("text se nepovedlo otevrit\n");
 	else
-		printf("soubor byl uspesne nacten\n");
+		printf("text byl uspesne nacten\n");
 	return f;
 }
 
-//vybirani sifry
-void sifraf(char *sifra,int *sifr)
+//choosing a cipher
+void cipherF(char *cipher,int *ciph)
 {
 	char c;
-	printf("cesar:1 jina:2\n");
+	printf("caesar:1 other:2\n");
 	if ((c=getchar())=='1'){
-		strcpy(sifra,"cesar");
-		printf("klic:");
-		scanf("%i",sifr);
+		strcpy(cipher,"caesar");
+		printf("key:");
+		scanf("%i",ciph);
 	}
 	while (getchar() != '\n');
 	return;
 }
 
 //samotne sifrovcani
-void sifrovac(char *soubor,int sifr,FILE *f)
+void cipherer(char *text,int ciph,FILE *f)
 {
 	char c=0;
 	FILE *f2;
-	if((f2=vopen(strcat(soubor,"-s"),"w+"))==NULL)
-		printf("chyba pri vytvareni souboru");
+	if((f2=fopen(strcat(text,"-s"),"w+"))==NULL)
+		printf("error when opening ciphertext");
 	while((c=fgetc(f))!=EOF){
 		if(c==' '){
 			putc(' ',f2);
 			continue;
 		}
 		//printf("X: %c %i\n",c,c);
-		fputc(((c-97 + sifr) % 26)+97, f2);
-		//printf("Y: %c %i\n",(((c-97 + sifr) % 26)+97),(((c-97 + sifr) % 26)+97));
+		fputc(((c-97 + ciph) % 26)+97, f2);
+		//printf("Y: %c %i\n",(((c-97 + ciph) % 26)+97),(((c-97 + ciph) % 26)+97));
 	}
 	fclose(f2);
 }
@@ -55,34 +56,34 @@ void sifrovac(char *soubor,int sifr,FILE *f)
 
 void main ()
 {
-	char *soubor,*sifra;
-	int sifr;
-	soubor=calloc(sizeof(char),32);
-	sifra=calloc(sizeof(char),16);
+	char *text,*cipher;
+	int ciph;
+	text=calloc(sizeof(char),32);
+	cipher=calloc(sizeof(char),16);
 	FILE *f;
 
 	int c=0;
 	while(1){
-		printf("1. zadej soubor: %s\n",soubor);
-		printf("2. zadej sifru: %s\n",sifra);
-		printf("3. spustit \n",soubor);
+		printf("1. enter filename: %s\n",text);
+		printf("2. enter cipher: %s\n",cipher);
+		printf("3. run \n",text);
 
 		c=getchar();
 		switch (c){
 		case '1':
 			getchar();
-			f=souborf(soubor);
+			f=textF(text);
 			break;
 		case '2':
 			getchar();
-			sifraf(sifra,&sifr);
+			cipherF(cipher,&ciph);
 			break;
 		case '3':
 			getchar();
-			sifrovac(soubor,sifr,f);
+			cipherer(text,ciph,f);
 			return;
 		default:
-			printf("neplatna moznost\n\n");
+			printf("invalid option\n\n");
 			break;
 		}
 	}
