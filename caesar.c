@@ -7,7 +7,7 @@
 FILE *textF(char *text)
 {
 	char c;
-	printf("\ninsert filename:");
+	printf("insert filename:");
 	scanf("%32s",text);
 	while (getchar() != '\n');
 
@@ -26,7 +26,7 @@ void cipherF(char *cipher,int *ciph)
 	printf("caesar:1 other:2\n");
 	if ((c=getchar())=='1'){
 		strcpy(cipher,"caesar");
-		printf("key:");
+		printf("key value:");
 		scanf("%i",ciph);
 	}
 	while (getchar() != '\n');
@@ -39,13 +39,15 @@ void cipherer(char *text,int ciph,FILE *f)
 	char c=0;
 	FILE *f2;
 	if((f2=fopen(strcat(text,"-s"),"w+"))==NULL)
-		printf("error when opening ciphertext");
+		printf("error when opening ciphertext\n");
 	while((c=fgetc(f))!=EOF){
 		if(!isalpha(c)){
 			putc(c,f2);
 			continue;
 		}
-		fputc((((tolower(c))-97 + ciph) % 26)+97, f2);
+		printf("%i %i %c %i %c\n",ciph,c,c,tolower(c),tolower(c));
+		fputc((((((tolower(c))-97) + ciph) % 26)+97), f2);
+		printf("%i %i %i %c\n",ciph,(((tolower(c))-97) + ciph),((((tolower(c))-97) + ciph) % 26),(((((tolower(c))-97) + ciph) % 26)+97));
 	}
 	fclose(f2);
 }
@@ -68,18 +70,19 @@ void main ()
 		c=getchar();
 		switch (c){
 		case '1':
-			getchar();
+			while (getchar() != '\n');
 			f=textF(text);
 			break;
 		case '2':
-			getchar();
+			while (getchar() != '\n');
 			cipherF(cipher,&ciph);
 			break;
 		case '3':
-			getchar();
+			while (getchar() != '\n');
 			cipherer(text,ciph,f);
 			return;
 		default:
+			while (getchar() != '\n');
 			printf("invalid option\n\n");
 			break;
 		}
