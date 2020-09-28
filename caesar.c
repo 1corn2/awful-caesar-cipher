@@ -7,6 +7,7 @@
 FILE *textF(char *text)
 {
 	char c;
+	printf("\ninsert filename:");
 	scanf("%32s",text);
 	while (getchar() != '\n');
 
@@ -40,11 +41,11 @@ void cipherer(char *text,int ciph,FILE *f)
 	if((f2=fopen(strcat(text,"-s"),"w+"))==NULL)
 		printf("error when opening ciphertext");
 	while((c=fgetc(f))!=EOF){
-		if(!isalnum(c)){
+		if(!isalpha(c)){
 			putc(c,f2);
 			continue;
 		}
-		fputc(((c-97 + ciph) % 26)+97, f2);
+		fputc((((tolower(c))-97 + ciph) % 26)+97, f2);
 	}
 	fclose(f2);
 }
