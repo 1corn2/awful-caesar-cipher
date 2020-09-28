@@ -1,22 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-#include "vopen.h"
-
+#include <string.h>
+#include <ctype.h>
 
 //opening and testing file
 FILE *textF(char *text)
 {
 	char c;
-	printf("\n \n nacitani souboru:\n");
 	scanf("%32s",text);
 	while (getchar() != '\n');
 
 	FILE *f;
 	if((f=fopen(text,"r+"))==NULL)
-		printf("text se nepovedlo otevrit\n");
+		printf("unable to open file\n");
 	else
-		printf("text byl uspesne nacten\n");
+		printf("file opened succesfully\n");
 	return f;
 }
 
@@ -34,7 +32,7 @@ void cipherF(char *cipher,int *ciph)
 	return;
 }
 
-//samotne sifrovcani
+//ciphering
 void cipherer(char *text,int ciph,FILE *f)
 {
 	char c=0;
@@ -42,13 +40,11 @@ void cipherer(char *text,int ciph,FILE *f)
 	if((f2=fopen(strcat(text,"-s"),"w+"))==NULL)
 		printf("error when opening ciphertext");
 	while((c=fgetc(f))!=EOF){
-		if(c==' '){
-			putc(' ',f2);
+		if(!isalnum(c)){
+			putc(c,f2);
 			continue;
 		}
-		//printf("X: %c %i\n",c,c);
 		fputc(((c-97 + ciph) % 26)+97, f2);
-		//printf("Y: %c %i\n",(((c-97 + ciph) % 26)+97),(((c-97 + ciph) % 26)+97));
 	}
 	fclose(f2);
 }
