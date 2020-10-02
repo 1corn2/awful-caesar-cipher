@@ -37,7 +37,7 @@ void cipherF(char *cipher,int *ciph)
 //ciphering
 void cipherer(char *text,int ciph,FILE *f)
 {
-	char c=0;
+	int c=0;
 	FILE *f2;
 	if((f2=fopen(strcat(text,"-s"),"w+"))==NULL)
 		printf("error when opening ciphertext\n");
