@@ -21,7 +21,7 @@ void cipherer(char *text,char ciph,int key1,int key2,FILE *f)
   	}
   }
   else if (ciph=='2'){
-    printf("unsupported right now :-(\n");
+    printf("unsupported right now :-( \n");
   }
 
   fclose(f2);

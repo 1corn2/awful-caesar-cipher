@@ -23,7 +23,7 @@ FILE *textF(char *text)
 void cipherF(char *cipher,char *ciph,int *key1,int *key2)
 {
 	char c;
-	printf("caesar:1 affinity:2\n");
+	printf("caesar:1 other?:2\n");
 	if ((c=getchar())=='1'){
 		*ciph=c;
 		strcpy(cipher,"caesar");
@@ -32,7 +32,7 @@ void cipherF(char *cipher,char *ciph,int *key1,int *key2)
 		*key1=(*key1 % 26);
 	}
 	else if((c=getchar())=='2'){
-		strcpy(cipher,"affinity");
+		strcpy(cipher,"other?");
 		printf("key1 value:");
 		scanf("%i",key1);
 		*key1=(*key1 % 26);
