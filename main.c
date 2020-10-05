@@ -46,7 +46,7 @@ void cipherF(char *cipher,char *ciph,int *key1,int *key2)
 //ciphering
 void cipherer();
 
-int main ()
+void main ()
 {
 	char *text,*cipher,ciph;
 	int key1,key2;
