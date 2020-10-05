@@ -46,7 +46,7 @@ void cipherF(char *cipher,char *ciph,int *key1,int *key2)
 //ciphering
 void cipherer();
 
-void main ()
+int main ()
 {
 	char *text,*cipher,ciph;
 	int key1,key2;
@@ -58,7 +58,7 @@ void main ()
 	while(1){
 		printf("1. enter filename: %s\n",text);
 		printf("2. enter cipher: %s\n",cipher);
-		printf("3. run \n",text);
+		printf("3. run \n");
 
 		c=getchar();
 		switch (c){
