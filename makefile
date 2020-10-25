@@ -7,9 +7,6 @@ main.o: main.c
 cipherer.o: cipherer.c
 	$(CC) $(CFLAGS) cipherer.c -c -o cipherer.o
 
-easy: main.c
-	gcc main.c -o caesar.exe
-
 clean:
 	-rm *.out *.o *.exe
 
