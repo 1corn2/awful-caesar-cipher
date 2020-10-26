@@ -20,26 +20,11 @@ FILE *textF(char *text)
 }
 
 //choosing a cipher
-void cipherF(char *cipher,char *ciph,int *key1,int *key2)
+void cipherF(int *key)
 {
-	char c;
-	printf("caesar:1 other?:2\n");
-	if ((c=getchar())=='1'){
-		*ciph=c;
-		strcpy(cipher,"caesar");
-		printf("key1 value:");
-		scanf("%i",key1);
-		*key1=(*key1 % 26);
-	}
-	else if((c=getchar())=='2'){
-		strcpy(cipher,"other?");
-		printf("key1 value:");
-		scanf("%i",key1);
-		*key1=(*key1 % 26);
-		}
-
-
-
+	printf("key value:");
+	scanf("%i",key);
+	*key=(*key % 26);
 	while (getchar() != '\n');
 	return;
 }
@@ -48,18 +33,16 @@ void cipherer();
 
 void main ()
 {
-	char *text,*cipher,ciph;
-	int key1,key2;
+	char *text;
+	int key;
 	text=calloc(sizeof(char),32);
-	cipher=calloc(sizeof(char),16);
 	FILE *f;
 
 	int c=0;
 	while(1){
-		printf("1. enter filename: %s\n",text);
-		printf("2. enter cipher: %s\n",cipher);
-		printf("3. run \n");
-
+		printf("[1.] enter filename: %s\n",text);
+		printf("[2.] enterkey value: %i\n",key);
+		printf("[3.] run \n",text);
 		c=getchar();
 		switch (c){
 		case '1':
@@ -68,11 +51,11 @@ void main ()
 			break;
 		case '2':
 			while (getchar() != '\n');
-			cipherF(cipher,&ciph,&key1,&key2);
+			cipherF(&key);
 			break;
 		case '3':
 			while (getchar() != '\n');
-			cipherer(text,ciph,key1,key2,f);
+			cipherer(text,key,f);
 			return;
 		default:
 			while (getchar() != '\n');
