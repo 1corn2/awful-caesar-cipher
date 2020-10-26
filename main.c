@@ -42,7 +42,7 @@ void main ()
 	while(1){
 		printf("[1.] enter filename: %s\n",text);
 		printf("[2.] enter key value (mod26): %i\n",key);
-		printf("[3.] run \n",text);
+		printf("[3.] run \n");
 		c=getchar();
 		switch (c){
 		case '1':
