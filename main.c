@@ -43,7 +43,6 @@ void main ()
 		printf("[1.] enter filename: %s\n",text);
 		printf("[2.] enterkey value: %i\n",key);
 		printf("[3.] run \n",text);
-
 		c=getchar();
 		switch (c){
 		case '1':
