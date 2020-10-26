@@ -34,14 +34,14 @@ void cipherer();
 void main ()
 {
 	char *text;
-	int key;
+	int key=0;
 	text=calloc(sizeof(char),32);
 	FILE *f;
 
 	int c=0;
 	while(1){
 		printf("[1.] enter filename: %s\n",text);
-		printf("[2.] enterkey value: %i\n",key);
+		printf("[2.] enter key value (mod26): %i\n",key);
 		printf("[3.] run \n",text);
 		c=getchar();
 		switch (c){
