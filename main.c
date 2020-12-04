@@ -6,7 +6,6 @@
 //opening and testing file
 FILE *textF(char *text)
 {
-	char c;
 	printf("insert filename:");
 	scanf("%32s",text);
 	while (getchar() != '\n');
@@ -31,7 +30,7 @@ void cipherF(int *key)
 //ciphering
 void cipherer();
 
-void main ()
+int main ()
 {
 	char *text;
 	int key=0;
